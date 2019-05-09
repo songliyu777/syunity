@@ -149,7 +149,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 953e2ba39b9a2d54388919b75877efb7, type: 2}
+  - {fileID: 2100000, guid: 6851a54f4eb774446bb6914d072b652e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -213,13 +213,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 992930238}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9173d38911503c4a9a371b0760bdd15, type: 3}
+  m_Script: {fileID: 11500000, guid: 43fb6e2ed4302fb428eeb01bbbb5496d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  luaScript: {fileID: 4900000, guid: 7cfed86298c2da543b693ffd8436367a, type: 3}
+  luaScript: {fileID: 4900000, guid: e76ea961483db4b4abf0bde6cbf88263, type: 3}
   injections:
   - name: lightObject
     value: {fileID: 1609897899}
+  editValues:
+  - name: speedValue
+    value: 20.1
 --- !u!1 &1318428841
 GameObject:
   m_ObjectHideFlags: 0

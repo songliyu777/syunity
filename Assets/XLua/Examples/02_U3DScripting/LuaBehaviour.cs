@@ -21,11 +21,19 @@ namespace XLuaTest
         public GameObject value;
     }
 
+    [System.Serializable]
+    public class EditValue
+    {
+        public string name;
+        public float value;
+    }
+
     [LuaCallCSharp]
     public class LuaBehaviour : MonoBehaviour
     {
         public TextAsset luaScript;
         public Injection[] injections;
+        public EditValue[] editValues;
 
         internal static LuaEnv luaEnv = new LuaEnv(); //all lua behaviour shared one luaenv only!
         internal static float lastGCTime = 0;
@@ -53,7 +61,13 @@ namespace XLuaTest
                 scriptEnv.Set(injection.name, injection.value);
             }
 
-            luaEnv.DoString(luaScript.text, "LuaBehaviour", scriptEnv);
+            foreach (var editValue in editValues)
+            {
+                scriptEnv.Set(editValue.name, editValue.value);
+            }
+
+            //luaEnv.DoString(luaScript.text, "LuaBehaviour", scriptEnv);
+            luaEnv.DoString(luaScript.text, luaScript.name, scriptEnv);
 
             Action luaAwake = scriptEnv.Get<Action>("awake");
             scriptEnv.Get("start", out luaStart);
