@@ -6,7 +6,7 @@
 
 local util = require 'xlua.util'
 local message_box = require 'message_box'
-
+local breakSocketHandle,debugXpCall = require("LuaDebug")("localhost",7003)
 -------------------------async_recharge-----------------------------
 local function async_recharge(num, cb) --模拟的异步充值
     print('requst server...')
