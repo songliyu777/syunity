@@ -786,7 +786,8 @@ namespace XLua
                     byte[] bytes = loader(ref real_file_path);
                     if (bytes != null)
                     {
-                        if (LuaAPI.xluaL_loadbuffer(L, bytes, bytes.Length, "@" + real_file_path) != 0)
+                        //if (LuaAPI.xluaL_loadbuffer(L, bytes, bytes.Length, "@" + real_file_path + ".lua") != 0)
+                        if (LuaAPI.xluaL_loadbuffer(L, bytes, bytes.Length, filename + ".lua") != 0)
                         {
                             return LuaAPI.luaL_error(L, String.Format("error loading module {0} from CustomLoader, {1}",
                                 LuaAPI.lua_tostring(L, 1), LuaAPI.lua_tostring(L, -1)));
