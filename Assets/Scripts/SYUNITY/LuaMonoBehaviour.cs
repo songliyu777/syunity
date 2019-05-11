@@ -6,11 +6,19 @@ using XLua;
 
 namespace SYUNITY
 {
+    [System.Serializable]
+    public class Injection
+    {
+        public string name;
+        public GameObject value;
+    }
+
     [LuaCallCSharp]
     public class LuaMonoBehaviour : MonoBehaviour
     {
         public string luaScriptName;
-
+        //用于editor填入值使用
+        public Injection[] injections;
         //调用频繁的函数采用
         Action m_updateFunc;
         Action m_lateUpdateFunc;
@@ -34,6 +42,11 @@ namespace SYUNITY
                 return false;
             }
 
+            foreach (var injection in injections)
+            {
+                luaTable.Set(injection.name, injection.value);
+            }
+
             luaTable.Set<string, Transform>("transform", transform);
             luaTable.Set<string, GameObject>("gameObject", gameObject);
 
@@ -47,7 +60,12 @@ namespace SYUNITY
         {
             if (string.IsNullOrEmpty(funcName))
             {
-                Debug.LogError("argument error: funcName");
+                Debug.LogError("argument error:" + funcName);
+                return;
+            }
+            if (luaTable == null)
+            {
+                Debug.LogError("table error:" + luaScriptName);
                 return;
             }
             Action func = luaTable.Get<Action>(funcName);
@@ -124,7 +142,10 @@ namespace SYUNITY
         void OnDestroy()
         {
             CallLuaFunction("OnDestroy");
-
+            if (luaTable == null)
+            {
+                return;
+            }
             luaTable.Set<string, Transform>("transform", null);
             luaTable.Set<string, GameObject>("gameObject", null);
 

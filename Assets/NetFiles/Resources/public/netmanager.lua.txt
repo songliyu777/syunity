@@ -1,0 +1,24 @@
+--[[
+    luaide  模板位置位于 Template/FunTemplate/NewFileTemplate.lua 其中 Template 为配置路径 与luaide.luaTemplatesDir
+    luaide.luaTemplatesDir 配置 https://www.showdoc.cc/web/#/luaide?page_id=713062580213505
+    author:{author}
+    time:2019-05-12 24:25:37
+]]
+
+require("tcpclient")
+require("class")
+
+---@class netmanager
+local netmanager = class()
+netmanager.singleton = 'netmanager'
+
+netmanager.init = function(self)
+    self.tcpclient = tcpclient("localhost", 7000)
+    self.tcpclient:reconnect()
+end
+
+netmanager.update = function(self)
+    
+end
+
+return netmanager()

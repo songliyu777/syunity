@@ -1,6 +1,6 @@
 -- CSingle = class() -- 类名
 -- CSingle.singleton = 名字 -- 开启单例模式
--- CSingle.init 初始化
+-- CSingle.init 初始化,类似构造函数
 function _init_interface(class)
     if not class.getInstance then
         class.getInstance = function ( self )
@@ -13,15 +13,12 @@ function _init_interface(class)
 
     if not class.destroyInstance then
         class.destroyInstance = function ( self )
-            local c;
             if class.__singleton then
                 local c = _G[class.__singleton]
                 _G[class.__singleton] = nil
-                return c
+                return c 
             end
-            c = _G[class]
-            _G[class] = nil
-            return c
+            return _G[class]
         end
     end
 end

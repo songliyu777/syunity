@@ -1,16 +1,26 @@
---[[
-    luaide  模板位置位于 Template/FunTemplate/NewFileTemplate.lua 其中 Template 为配置路径 与luaide.luaTemplatesDir
-    luaide.luaTemplatesDir 配置 https://www.showdoc.cc/web/#/luaide?page_id=713062580213505
-    author:{author}
-    time:2019-05-10 16:33:34
-]]
 require("class")
 
+---@class tcpclient
 tcpclient = class()
-tcpclient.singleton = 'tcpclient'
 
-tcpclient.init = function ()
-    print("tcpclient.init")
+tcpclient.init = function (self, host, port)
+    self.host = host
+    self.port = port
 end
 
-return tcpclient()
+tcpclient.reconnect = function(self)
+    self:close()
+    if self.scoket == nil then
+        self.socket = require("socket")
+    end
+    self.connection, err = self.socket.connect(self.host, self.port)
+    if self.connection == nil and err then
+        CS.UnityEngine.Debug.LogError(err)
+    end
+end
+
+tcpclient.close = function(self)
+    if self.connection then
+        self.connection:close()
+    end
+end
