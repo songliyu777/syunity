@@ -643,6 +643,11 @@ namespace XLua
             return LuaAPI.luaopen_socket_core(L);
         }
 #endif
+        [MonoPInvokeCallback(typeof(LuaDLL.lua_CSFunction))]
+        internal static int LoadPB(RealStatePtr L)
+        {
+            return LuaAPI.luaopen_pb(L);
+        }
 
         [MonoPInvokeCallback(typeof(LuaCSFunction))]
         internal static int LoadCS(RealStatePtr L)

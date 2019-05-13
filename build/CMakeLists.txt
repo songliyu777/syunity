@@ -110,6 +110,19 @@ set ( XLUA_CORE
     xlua.c
 )
 
+#begin pb
+set (PB_SRC pb/pb.c)
+set_property(
+	SOURCE ${PB_SRC}
+	APPEND
+	PROPERTY COMPILE_DEFINITIONS
+	LUA_LIB
+)
+list(APPEND THIRDPART_INC  pb)
+set (THIRDPART_SRC ${THIRDPART_SRC} ${PB_SRC})
+#end pb
+
+
 if (NOT USING_LUAJIT)
     list (APPEND XLUA_CORE memory_leak_checker.c)
 endif ( )

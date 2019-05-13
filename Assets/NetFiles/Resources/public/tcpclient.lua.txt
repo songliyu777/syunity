@@ -1,5 +1,6 @@
 require("class")
 local util = require("xlua.util")
+local pb = require("pb")
 ---@class tcpclient
 tcpclient = class()
 
