@@ -12,13 +12,17 @@ require("class")
 local netmanager = class()
 netmanager.singleton = 'netmanager'
 
+netmanager.clients = {}
+
 netmanager.init = function(self)
     self.tcpclient = tcpclient("localhost", 7000)
     self.tcpclient:reconnect()
 end
 
 netmanager.update = function(self)
-    
+    if self.tcpclient then
+        self.tcpclient:update()
+    end
 end
 
 return netmanager()

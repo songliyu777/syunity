@@ -1,11 +1,25 @@
 require("class")
-
+local util = require("xlua.util")
 ---@class tcpclient
 tcpclient = class()
 
 tcpclient.init = function (self, host, port)
     self.host = host
     self.port = port
+end
+
+local loop = function(self)
+    self.coro = coroutine.running()
+    while(true) do
+        local line, status = self.connection:receive()
+        print(status)
+        if status ~= "timeout" then 
+            CS.UnityEngine.Debug.LogError("tcp loop error:"..status)
+            break 
+        end
+        coroutine.yield()
+    end
+    self.coro = nil
 end
 
 tcpclient.reconnect = function(self)
@@ -16,11 +30,22 @@ tcpclient.reconnect = function(self)
     self.connection, err = self.socket.connect(self.host, self.port)
     if self.connection == nil and err then
         CS.UnityEngine.Debug.LogError(err)
+        return
     end
+    self.connection:setoption("tcp-nodelay", true)
+    self.connection:settimeout(0)
+    local fun = util.coroutine_call(loop)
+    fun(self)
 end
 
 tcpclient.close = function(self)
     if self.connection then
         self.connection:close()
+    end
+end
+
+tcpclient.update = function(self)
+    if self.coro then
+        coroutine.resume(self.coro, self)
     end
 end
