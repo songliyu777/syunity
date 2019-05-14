@@ -61,7 +61,6 @@ tcpclient.unregister = function(self, cmd)
 end
 
 tcpclient.receive = function(self, bytecount)
-    print("bytecount:"..bytecount)
     if(bytecount > 65535) then return nil end
     if self.recvhead then
         --接收head
