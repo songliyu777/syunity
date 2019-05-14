@@ -1,0 +1,35 @@
+require("tcpclient")
+require("class")
+local timer = require("timer")
+
+---@class netmanager
+local netmanager = class()
+netmanager.singleton = 'netmanager'
+
+netmanager.init = function(self)
+    self.clients = {}
+    self:open("main_clinet", "localhost", 7000)
+end
+
+netmanager.update = function(self)
+    for k,v in pairs(self.clients) do
+        v:update()
+    end
+end
+
+netmanager.open = function(self, name, host, port)
+    self.clients[name] = tcpclient(host, port)
+    timer:register_repeat_function(name, 3.0, true,
+    function(c) 
+        if not c.connection then
+            c:reconnect()
+        end
+    end, self.clients[name])
+end
+
+netmanager.close = function(self, name)
+    self.clients[name] = nil
+    timer:unregister_repeat_function(name)
+end
+
+return netmanager()

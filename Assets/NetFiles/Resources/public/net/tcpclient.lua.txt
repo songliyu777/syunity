@@ -72,6 +72,7 @@ tcpclient.receive = function(self, bytecount)
     --错误判断
     if self.status and self.status ~= "timeout" then 
         CS.UnityEngine.Debug.LogError("tcp loop error:"..self.status)
+        self:close()
         return self.status
     end
     --接收有数据
@@ -82,6 +83,7 @@ tcpclient.receive = function(self, bytecount)
             if length > 0 then
                 if length > max_length then
                     CS.UnityEngine.Debug.LogError("too length error:"..length)
+                    self:close()
                     return length
                 end
             end
@@ -136,7 +138,7 @@ tcpclient.dispatch = function (self)
         self.recv_serial = value.head.serial
         local fun = self.CMD[value.head.cmd]
         if fun then
-            fun(value.head, value.body)
+            fun(self, value.head, value.body)
         else
             CS.UnityEngine.Debug.LogError("no register command error: "..value.head.cmd)
         end
@@ -154,6 +156,7 @@ tcpclient.sendlist = function(self)
             local total, err, partial, elapsed = self.connection:send(package.buf)
             if err then
                 CS.UnityEngine.Debug.LogError("send error:"..err)
+                self:close()
                 break;
             else
                 package.send = true
@@ -180,21 +183,30 @@ local loop = function(self)
     self.coro = nil
 end
 
+local connection_response = function(self, head, body)
+    print("connection_response")
+end
+
 tcpclient.reconnect = function(self)
     self:close()
     if self.scoket == nil then
         self.socket = require("socket")
     end
-    self.connection, err = self.socket.connect(self.host, self.port)
-    if self.connection == nil and err then
+    local c, e = self.socket.tcp();
+    assert(c, e)
+    c:settimeout(0.1)
+    local ret, err = c:connect(self.host, self.port)
+    if ret == nil and err then
         CS.UnityEngine.Debug.LogError(err)
         return
     end
+    self.connection = c
     self.connection:setoption("tcp-nodelay", true)
     self.connection:settimeout(0)
     --接收初始化
     self.recvhead = true
     self.head = {}
+    self:register(1, connection_response)
     for i = 1, 2 do
         send_test(self)
     end
@@ -205,6 +217,7 @@ end
 tcpclient.close = function(self)
     if self.connection then
         self.connection:close()
+        self.connection = nil
     end
 end
 

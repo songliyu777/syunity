@@ -6,7 +6,7 @@ local pbservice = class()
 pbservice.singleton = 'pbservice'
 
 pbservice.init = function(self)
-    assert(pb.loadfile "Assets/NetFiles/Resources/proto/test.pb")
+    assert(pb.loadfile("Assets/NetFiles/Resources/proto/test.pb"))
     self.pb = pb
 end
 

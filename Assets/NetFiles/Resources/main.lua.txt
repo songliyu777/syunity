@@ -1,5 +1,6 @@
 local breakSocketHandle,debugXpCall = require('LuaDebug')('localhost',7003)
 local netmanager = require("netmanager")
+local timer = require("timer")
 
 main = {}
 
@@ -9,5 +10,10 @@ end
 
 main.Update = function ()
     CS.SYUNITY.XLuaManager.Ins:Update()
+    timer:update()
     netmanager:update()
+end
+
+main.FixedUpdate = function()
+    timer:fixedupdate()
 end

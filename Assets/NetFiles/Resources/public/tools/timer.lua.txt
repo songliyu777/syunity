@@ -1,0 +1,49 @@
+require("class")
+
+local timer = class()
+timer.singleton = 'timer'
+
+timer.init = function(self)
+    self.repeat_function = {}
+end
+
+timer.update = function(self)
+    local unscaledDeltaTime = CS.UnityEngine.Time.unscaledDeltaTime
+    local deltaTime = CS.UnityEngine.Time.deltaTime
+    for i,v in ipairs(self.repeat_function) do
+        if v.excute <= 0 then
+            v.func(v.param)
+            v.excute = v.excute + v.interval
+        end
+        if v.unscaled then
+            v.excute = v.excute - unscaledDeltaTime
+        else
+            v.excute = v.excute - deltaTime
+        end
+    end
+end
+
+timer.fixedupdate = function(self)
+ 
+end
+
+timer.register_repeat_function = function(self, name, interval, unscaled, func, ...)
+    local rf = {}
+    rf.name = name
+    rf.interval = interval
+    rf.unscaled = unscaled
+    rf.param = ...
+    rf.func = func
+    rf.excute = 0
+    table.insert(self.repeat_function, rf)
+end
+
+timer.unregister_repeat_function = function(self, name)
+    for i,v in ipairs(self.repeat_function) do
+        if v.name == name then
+            self.repeat_function[i] = nil
+        end
+    end
+end
+
+return timer()

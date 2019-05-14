@@ -22,6 +22,7 @@ namespace SYUNITY
         //调用频繁的函数采用
         Action m_updateFunc;
         Action m_lateUpdateFunc;
+        Action m_fixedUpdateFunc;
 
         public LuaTable luaTable
         {
@@ -52,6 +53,7 @@ namespace SYUNITY
 
             m_updateFunc = luaTable.Get<Action>("Update");
             m_lateUpdateFunc = luaTable.Get<Action>("LateUpdate");
+            m_fixedUpdateFunc = luaTable.Get<Action>("FixedUpdate");
 
             return true;
         }
@@ -126,6 +128,14 @@ namespace SYUNITY
             if (m_lateUpdateFunc != null)
             {
                 m_lateUpdateFunc();
+            }
+        }
+
+        void FixedUpdate()
+        {
+            if(m_fixedUpdateFunc != null)
+            {
+                m_fixedUpdateFunc();
             }
         }
 
