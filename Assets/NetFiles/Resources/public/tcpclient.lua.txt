@@ -1,23 +1,181 @@
 require("class")
 local util = require("xlua.util")
-local pb = require("pb")
+local pbservice = require("pbservice")
+local netpack = require("netpack")
+require("stringtool")
 ---@class tcpclient
 tcpclient = class()
 
+local ok, new_tab = pcall(require, "table.new")
+if not ok then
+    new_tab = function (narr, nrec) return {} end
+end
+
+local Test = {
+    name = nil,
+    password = nil
+}
+
+local max_length = 1024 * 1024
+
+local send_test = function(self)
+    local test_msg = {}
+    test_msg.name = "test123"
+    test_msg.password = "test123456"
+
+    local protobuf = pbservice.pb.encode("Test", test_msg)
+    local serial = 1
+    local cmd = 1
+    local session = 1
+    local send_pack = netpack.pack(serial, cmd, session, protobuf)
+    --local total, err, partial, elapsed = self.connection:send(send_pack)
+    self:send_insert(cmd, protobuf)
+    --print(total, err, partial, elapsed)
+end
+
 tcpclient.init = function (self, host, port)
+    self.CMD = {}
     self.host = host
     self.port = port
+    self.send_serial = 0
+    self.recv_serial = 0
+    self.session = 0
+    self.rlist = new_tab(0, 10)
+    self.slist = new_tab(0, 10)
+end
+
+tcpclient.register = function(self, cmd, callback)
+    if self.CMD[cmd] then
+        CS.UnityEngine.Debug.LogError("register error same command:"..cmd)
+        return
+    end
+    self.CMD[cmd] = callback
+end
+
+tcpclient.unregister = function(self, cmd)
+    if self.CMD[cmd] == nil then
+        CS.UnityEngine.Debug.LogError("unregister error no command:"..cmd)
+        return
+    end
+    self.CMD[cmd] = nil
+end
+
+tcpclient.receive = function(self, bytecount)
+    print("bytecount:"..bytecount)
+    if(bytecount > 65535) then return nil end
+    if self.recvhead then
+        --接收head
+        self.recv, self.status = self.connection:receive(22)
+    else
+        --接收body
+        self.recv, self.status = self.connection:receive(self.head.length)
+    end
+    --错误判断
+    if self.status and self.status ~= "timeout" then 
+        CS.UnityEngine.Debug.LogError("tcp loop error:"..self.status)
+        return self.status
+    end
+    --接收有数据
+    if self.recv then
+        bytecount = bytecount + #self.recv
+        if self.recvhead then
+            local head, version, length, checksum, serial, cmd, session = netpack.head_unpack(self.recv)
+            if length > 0 then
+                if length > max_length then
+                    CS.UnityEngine.Debug.LogError("too length error:"..length)
+                    return length
+                end
+            end
+            self.recvhead = false
+            self.head.head = head
+            self.head.version = version
+            self.head.length = length
+            self.head.checksum = checksum
+            self.head.serial = serial
+            self.head.cmd = cmd
+            self.head.session = session
+        else
+            --protobuf处理
+            self.recvhead = true
+            self:recv_insert()
+        end
+        return self:receive(bytecount)
+    end
+    return nil
+end
+
+tcpclient.recv_insert = function(self)
+    local package = {};
+    package.head = self.head;
+    package.body = self.recv;
+    table.insert(self.rlist, package)
+end
+
+tcpclient.send_insert = function(self, cmd, protobuf, wait_cmd)
+    self.send_serial = self.send_serial + 1
+    local package = {}
+    package.cmd = cmd
+    package.wait_cmd = wait_cmd
+    package.send = false
+    package.buf = netpack.pack(self.send_serial, cmd, self.session, protobuf)
+    table.insert(self.slist, package)
+end
+
+tcpclient.dispatch = function (self)
+    for index, value in ipairs(self.rlist) do
+        --tcp包序校验，本地接受的序列号ID肯定比服务器小，如果超过了要检查下两边的问题，服务器也是有序的
+        if self.recv_serial >= value.head.serial then
+            CS.UnityEngine.Debug.LogError("serial error: client: "..self.recv_serial.." server: "..value.head.serial)
+        end
+        --删除掉本地等待回复的包
+        for i, v in ipairs(self.slist) do
+            if v.wait_cmd == value.head.cmd then
+                table.remove( self.slist, index)
+                break  
+            end
+        end
+        self.recv_serial = value.head.serial
+        local fun = self.CMD[value.head.cmd]
+        if fun then
+            fun(value.head, value.body)
+        else
+            CS.UnityEngine.Debug.LogError("no register command error: "..value.head.cmd)
+        end
+    end
+    self.rlist = new_tab(0, 10)
+end
+
+tcpclient.sendlist = function(self)
+    for i = 1, #self.slist do
+        local package = self.slist[i]
+        if package.send and package.wait_cmd then
+            break;
+        end
+        if not package.send then
+            local total, err, partial, elapsed = self.connection:send(package.buf)
+            if err then
+                CS.UnityEngine.Debug.LogError("send error:"..err)
+                break;
+            else
+                package.send = true
+                if package.wait_cmd then
+                    break;
+                end
+                self.slist[i] = nil
+            end
+        end
+    end
 end
 
 local loop = function(self)
     self.coro = coroutine.running()
     while(true) do
-        local line, status = self.connection:receive()
-        print(status)
-        if status ~= "timeout" then 
-            CS.UnityEngine.Debug.LogError("tcp loop error:"..status)
-            break 
+        local err = self:receive(0)
+        if err then
+            break
         end
+        self:dispatch()
+        self:sendlist()
         coroutine.yield()
     end
     self.coro = nil
@@ -35,6 +193,12 @@ tcpclient.reconnect = function(self)
     end
     self.connection:setoption("tcp-nodelay", true)
     self.connection:settimeout(0)
+    --接收初始化
+    self.recvhead = true
+    self.head = {}
+    for i = 1, 2 do
+        send_test(self)
+    end
     local fun = util.coroutine_call(loop)
     fun(self)
 end
