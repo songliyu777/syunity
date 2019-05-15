@@ -1,6 +1,11 @@
 require("class")
 require("moduleconfig")
 
+local ok, new_tab = pcall(require, "table.new")
+if not ok then
+    new_tab = function (narr, nrec) return {} end
+end
+
 ---@class netmanager
 local modulemanager = class()
 modulemanager.singleton = 'modulemanager'
@@ -19,6 +24,8 @@ modulemanager.init = function (self)
         module.gb = mObj
         self.modules[module.tn] = module         --由于模块还没激活，所以目前模块还没有产生table
     end
+
+    self.asyncalls = new_tab(0, 10)
 end
 
 ---@type fun(self:table, tn:string, tb:table)
@@ -49,6 +56,43 @@ modulemanager.disable = function(self, tn)
         return
     end
     module.gb:SetActive(false) 
+end
+
+---@type fun(self:table, ...:string)
+modulemanager.disable_all = function(self, ...)
+    local n = select('#', ...)
+    if n > 0 then
+        for index, value in ipairs(self.modules) do
+            local disable = true
+            for i = 1, n do
+                local param = select(i, ...)
+                if param == value.tn then
+                    disable = false
+                    break
+                end
+            end
+            if disable then value.gb:SetActive(false) end
+        end
+    else
+        for index, value in ipairs(self.modules) do
+            value.gb:SetActive(false)
+        end
+    end
+end
+
+---@type fun(self:table, tn:string, func:string)
+modulemanager.call_syn = function(self, tn, func, ...)
+    local module = self.modules[tn]
+    if not module or not module.tb then
+        CS.UnityEngine.Debug.LogError("no module or table name: "..tn)
+        return
+    end
+    local f = module.tb[func]
+    if not f then
+        CS.UnityEngine.Debug.LogError("no function: "..module.tb.modulename.."."..tn)
+        return
+    end 
+    return f(module.tb, ...)
 end
 
 return modulemanager()
