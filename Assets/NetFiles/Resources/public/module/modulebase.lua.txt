@@ -1,0 +1,27 @@
+require("class")
+local modulemanager = require("modulemanager")
+
+modulebase = class()
+modulebase.modulename = "modulebase"
+
+modulebase.OnModuleEnable = function(self)
+    print(self.modulename..".OnModuleEnable need to be implement")
+end
+
+modulebase.OnEnable = function(self)
+    modulemanager:enablemodule(self.modulename, self)
+    self:OnModuleEnable()
+end
+
+modulebase.OnModuleDiable = function(self)
+    print(self.modulename..".OnModuleDiable need to be implement")
+end
+
+modulebase.OnDisable = function(self)
+    self:OnModuleDiable()
+end
+
+-- 模块被管理器释放掉时的处理
+modulebase.OnModuleRelease = function(self)
+    print(self.modulename..".OnModuleDiable need to be implement")
+end

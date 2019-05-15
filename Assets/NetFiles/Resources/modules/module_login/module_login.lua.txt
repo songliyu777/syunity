@@ -1,0 +1,5 @@
+require("class")
+require("modulebase")
+
+module_login = class(modulebase)
+module_login.modulename = "module_login"

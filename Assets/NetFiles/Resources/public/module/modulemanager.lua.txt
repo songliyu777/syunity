@@ -1,0 +1,54 @@
+require("class")
+require("moduleconfig")
+
+---@class netmanager
+local modulemanager = class()
+modulemanager.singleton = 'modulemanager'
+
+modulemanager.init = function (self)
+    self.gameObject = CS.UnityEngine.GameObject("ModuleManager")
+    CS.UnityEngine.Object.DontDestroyOnLoad(self.gameObject)
+    self.modules = {} -- key name value talel
+    for tn,desc in pairs(modules) do
+        local mObj = CS.UnityEngine.GameObject(tn)
+        mObj.transform:SetParent(self.gameObject.transform)
+        mObj:SetActive(false)
+        mObj:AddComponent(typeof(CS.SYUNITY.LuaMonoBehaviour)).luaScriptName = tn
+        local module = {}
+        module.tn = tn -- xlua规范脚本名就是表名
+        module.gb = mObj
+        self.modules[module.tn] = module         --由于模块还没激活，所以目前模块还没有产生table
+    end
+end
+
+---@type fun(self:table, tn:string, tb:table)
+modulemanager.enablemodule = function(self, tn, tb)
+    local module = self.modules[tn]
+    if not module then
+        CS.UnityEngine.Debug.LogError("no module name: "..tn)
+        return
+    end 
+    module.tb = tb
+end
+
+---@type fun(self:table, tn:string)
+modulemanager.enable = function(self, tn)
+    local module = self.modules[tn]
+    if not module or not module.gb then
+        CS.UnityEngine.Debug.LogError("no module or gameObject name: "..tn)
+        return
+    end
+    module.gb:SetActive(true) 
+end
+
+---@type fun(self:table, tn:string)
+modulemanager.disable = function(self, tn)
+    local module = self.modules[tn]
+    if not module or not module.gb then
+        CS.UnityEngine.Debug.LogError("no module or gameObject name: "..tn)
+        return
+    end
+    module.gb:SetActive(false) 
+end
+
+return modulemanager()

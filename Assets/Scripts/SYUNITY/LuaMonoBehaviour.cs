@@ -20,9 +20,9 @@ namespace SYUNITY
         //用于editor填入值使用
         public Injection[] injections;
         //调用频繁的函数采用
-        Action m_updateFunc;
-        Action m_lateUpdateFunc;
-        Action m_fixedUpdateFunc;
+        Action<LuaTable> m_updateFunc;
+        Action<LuaTable> m_lateUpdateFunc;
+        Action<LuaTable> m_fixedUpdateFunc;
 
         public LuaTable luaTable
         {
@@ -43,17 +43,20 @@ namespace SYUNITY
                 return false;
             }
 
-            foreach (var injection in injections)
+            if (injections != null)
             {
-                luaTable.Set(injection.name, injection.value);
+                foreach (var injection in injections)
+                {
+                    luaTable.Set(injection.name, injection.value);
+                }
             }
 
             luaTable.Set<string, Transform>("transform", transform);
             luaTable.Set<string, GameObject>("gameObject", gameObject);
 
-            m_updateFunc = luaTable.Get<Action>("Update");
-            m_lateUpdateFunc = luaTable.Get<Action>("LateUpdate");
-            m_fixedUpdateFunc = luaTable.Get<Action>("FixedUpdate");
+            m_updateFunc = luaTable.Get<Action<LuaTable>>("Update");
+            m_lateUpdateFunc = luaTable.Get<Action<LuaTable>>("LateUpdate");
+            m_fixedUpdateFunc = luaTable.Get<Action<LuaTable>>("FixedUpdate");
 
             return true;
         }
@@ -70,10 +73,10 @@ namespace SYUNITY
                 Debug.LogError("table error:" + luaScriptName);
                 return;
             }
-            Action func = luaTable.Get<Action>(funcName);
+            Action<LuaTable> func = luaTable.Get<Action<LuaTable>>(funcName);
             if (func != null)
             {
-                func();
+                func(luaTable);
             }
         }
 
@@ -119,7 +122,7 @@ namespace SYUNITY
         {
             if (m_updateFunc != null)
             {
-                m_updateFunc();
+                m_updateFunc(luaTable);
             }
         }
 
@@ -127,7 +130,7 @@ namespace SYUNITY
         {
             if (m_lateUpdateFunc != null)
             {
-                m_lateUpdateFunc();
+                m_lateUpdateFunc(luaTable);
             }
         }
 
@@ -135,7 +138,7 @@ namespace SYUNITY
         {
             if(m_fixedUpdateFunc != null)
             {
-                m_fixedUpdateFunc();
+                m_fixedUpdateFunc(luaTable);
             }
         }
 

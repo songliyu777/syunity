@@ -1,11 +1,13 @@
 local breakSocketHandle,debugXpCall = require('LuaDebug')('localhost',7003)
 local netmanager = require("netmanager")
 local timer = require("timer")
+local modulemanager = require("modulemanager")
 
 main = {}
 
 main.Awake = function()
     CS.UnityEngine.Object.DontDestroyOnLoad(main.gameObject)
+    modulemanager:enable("module_login")
 end
 
 main.Update = function ()
