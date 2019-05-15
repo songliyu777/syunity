@@ -174,7 +174,8 @@ namespace SYUNITY
             [CSharpCallLua]
             public static List<Type> CSharpCallLua = new List<Type>()
             {
-                typeof(Action)
+                typeof(Action),
+                typeof(Action<LuaTable>)
             };
         }
     }
