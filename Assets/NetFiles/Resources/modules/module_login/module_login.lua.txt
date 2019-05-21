@@ -1,0 +1,9 @@
+require("class")
+require("modulebase")
+
+module_login = class(modulebase)
+module_login.modulename = "module_login"
+
+module_login.Awake = function(self)
+    print("module_login.Awake")
+end

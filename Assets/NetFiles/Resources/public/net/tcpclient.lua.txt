@@ -33,6 +33,11 @@ local send_test = function(self)
     --print(total, err, partial, elapsed)
 end
 
+
+local connection_response = function(self, head, body)
+    print("connection_response")
+end
+
 tcpclient.init = function (self, host, port)
     self.CMD = {}
     self.host = host
@@ -42,6 +47,7 @@ tcpclient.init = function (self, host, port)
     self.session = 0
     self.rlist = new_tab(0, 10)
     self.slist = new_tab(0, 10)
+    self:register(1, connection_response)
 end
 
 tcpclient.register = function(self, cmd, callback)
@@ -183,10 +189,6 @@ local loop = function(self)
     self.coro = nil
 end
 
-local connection_response = function(self, head, body)
-    print("connection_response")
-end
-
 tcpclient.reconnect = function(self)
     self:close()
     if self.scoket == nil then
@@ -206,7 +208,6 @@ tcpclient.reconnect = function(self)
     --接收初始化
     self.recvhead = true
     self.head = {}
-    self:register(1, connection_response)
     for i = 1, 2 do
         send_test(self)
     end

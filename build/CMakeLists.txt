@@ -36,6 +36,39 @@ MARK_AS_ADVANCED(XLUA_PROJECT_DIR)
 set(LUA_SRC_PATH lua-5.3.5/src)
 set(LUAJIT_SRC_PATH luajit-2.1.0b3/src)
 
+#begin 3rd import
+
+#begin pb
+set (PB_SRC pb/pb.c)
+set_property(
+	SOURCE ${PB_SRC}
+	APPEND
+	PROPERTY COMPILE_DEFINITIONS
+	LUA_LIB
+)
+list(APPEND THIRDPART_INC pb)
+set (THIRDPART_SRC ${THIRDPART_SRC} ${PB_SRC})
+#end pb
+
+#begin lua-rapidjson
+set (RAPIDJSON_SRC 
+	lua-rapidjson/src/rapidjson.cpp
+	lua-rapidjson/src/Document.cpp
+	lua-rapidjson/src/Schema.cpp
+	lua-rapidjson/src/values.cpp
+)
+set_property(
+	SOURCE ${RAPIDJSON_SRC}
+	APPEND
+	PROPERTY COMPILE_DEFINITIONS
+	LUA_LIB
+)
+list(APPEND THIRDPART_INC lua-rapidjson/include)
+set (THIRDPART_SRC ${THIRDPART_SRC} ${RAPIDJSON_SRC})
+#end lua-rapidjson
+
+#end 3rd import
+
 if (USING_LUAJIT)
 	
     if (APPLE AND NOT IOS AND NOT ANDROID)
@@ -109,19 +142,6 @@ set ( XLUA_CORE
     perflib.c
     xlua.c
 )
-
-#begin pb
-set (PB_SRC pb/pb.c)
-set_property(
-	SOURCE ${PB_SRC}
-	APPEND
-	PROPERTY COMPILE_DEFINITIONS
-	LUA_LIB
-)
-list(APPEND THIRDPART_INC  pb)
-set (THIRDPART_SRC ${THIRDPART_SRC} ${PB_SRC})
-#end pb
-
 
 if (NOT USING_LUAJIT)
     list (APPEND XLUA_CORE memory_leak_checker.c)

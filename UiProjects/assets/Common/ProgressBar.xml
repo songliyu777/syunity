@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="582,54" extention="ProgressBar">
+  <displayList>
+    <image id="n0_fypo" name="n0" src="fypo3" fileName="loading_back.png" xy="0,0" size="582,54">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n1_fypo" name="bar" src="fypo4" fileName="loading_progress.png" xy="57,0" size="468,54"/>
+  </displayList>
+  <ProgressBar/>
+</component>
