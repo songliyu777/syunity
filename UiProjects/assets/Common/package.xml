@@ -4,6 +4,7 @@
     <image id="fypo3" name="loading_back.png" path="/"/>
     <image id="fypo4" name="loading_progress.png" path="/"/>
     <component id="fypo2" name="ProgressBar.xml" path="/" exported="true"/>
+    <component id="lgp95" name="Test.xml" path="/" exported="true"/>
   </resources>
   <publish name="Common"/>
 </packageDescription>
