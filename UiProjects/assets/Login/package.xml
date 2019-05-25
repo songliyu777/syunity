@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <packageDescription id="jlje9cod" jpegQuality="80" compressPNG="true">
-  <resources>
-    <component id="fypo5" name="Main.xml" path="/" exported="true"/>
-  </resources>
+  <resources/>
   <publish name="Login"/>
 </packageDescription>

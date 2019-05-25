@@ -142,11 +142,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024553ecf96a65649b929ee08c9214fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  packageName: Login
-  componentName: Main
+  packageName: Common
+  componentName: LoadPanel
   fitScreen: 0
   sortingOrder: 0
-  packagePath: UI/Login
+  packagePath: UI/Common
   renderMode: 0
   renderCamera: {fileID: 0}
   position: {x: 0, y: 0, z: 0}
@@ -166,7 +166,7 @@ Transform:
   m_GameObject: {fileID: 188345922}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0052083335, y: 0.0052083335, z: 0.0052083335}
+  m_LocalScale: {x: 0.005207316, y: 0.005207316, z: 0.005207316}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -563,7 +563,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1740411165}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8125, y: -5, z: 0}
+  m_LocalPosition: {x: 2.8119507, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

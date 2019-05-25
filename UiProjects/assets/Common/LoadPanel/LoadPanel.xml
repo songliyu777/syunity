@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1080,1920">
+  <displayList>
+    <loader id="n3_qlsc" name="back" xy="0,-200" size="1080,1920" url="ui://jqed8mhyhpfx8" fill="scaleMatchWidth"/>
+    <component id="n0_qlsc" name="n0" src="fypo2" fileName="LoadPanel/ProgressBar.xml" xy="249,933">
+      <ProgressBar value="50" max="100"/>
+    </component>
+  </displayList>
+</component>

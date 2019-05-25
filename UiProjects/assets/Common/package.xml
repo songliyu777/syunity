@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <packageDescription id="jqed8mhy" jpegQuality="80" compressPNG="true">
   <resources>
-    <image id="fypo3" name="loading_back.png" path="/"/>
-    <image id="fypo4" name="loading_progress.png" path="/"/>
-    <component id="fypo2" name="ProgressBar.xml" path="/" exported="true"/>
-    <component id="lgp95" name="Test.xml" path="/" exported="true"/>
+    <image id="fypo3" name="loading_back.png" path="/LoadPanel/"/>
+    <image id="fypo4" name="loading_progress.png" path="/LoadPanel/"/>
+    <component id="fypo2" name="ProgressBar.xml" path="/LoadPanel/" exported="true"/>
+    <component id="qlsc6" name="LoadPanel.xml" path="/LoadPanel/" exported="true"/>
+    <image id="hpfx8" name="panelback.png" path="/LoadPanel/"/>
   </resources>
   <publish name="Common"/>
 </packageDescription>
