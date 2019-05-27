@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using XLua;
 
 namespace XAsset
 {
+    [LuaCallCSharp]
     public sealed class Assets : MonoBehaviour
     {
         static Assets instance; 
