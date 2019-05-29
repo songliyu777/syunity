@@ -1,0 +1,18 @@
+require("class")
+require("fairygui")
+
+---@class uimanager
+local _M = class()
+_M.singleton = 'uimanager'
+
+uimanager = _M()
+
+uimanager.Awake = function(self)
+    print("uimanager.Awake")
+    -- CS.UnityEngine.Object.DontDestroyOnLoad(uimanager.gameObject)
+    -- local c = uimanager.gameObject:GetComponent(type(CS.SYUNITY.UIManager))
+    -- print(c);
+    --self.AddPackage = uimanager.gameObject:GetComponent(type(CS.SYUNITY.UIManager)).AddPackage;
+end
+
+return uimanager

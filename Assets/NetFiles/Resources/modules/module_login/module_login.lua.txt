@@ -1,9 +1,22 @@
 require("class")
 require("modulebase")
+require("uimanager")
 
 module_login = class(modulebase)
 module_login.modulename = "module_login"
 
 module_login.Awake = function(self)
     print("module_login.Awake")
+end
+
+module_login.OnModuleEnable = function(self)
+    --uimanager:AddPackage("Common")
+    -- local mainView = UIPackage.CreateObject("Common", "LoadPanel").asCom
+    -- mainView:SetSize(GRoot.inst.width, GRoot.inst.height)
+    -- mainView:AddRelation(GRoot.inst, RelationType.Size)
+    -- GRoot.inst:AddChild(mainView)
+end
+
+module_login.OnModuleDisable = function(self)
+
 end

@@ -13,12 +13,12 @@ modulebase.OnEnable = function(self)
     self:OnModuleEnable()
 end
 
-modulebase.OnModuleDiable = function(self)
+modulebase.OnModuleDisable = function(self)
     print(self.modulename..".OnModuleDiable need to be implement")
 end
 
 modulebase.OnDisable = function(self)
-    self:OnModuleDiable()
+    self:OnModuleDisable()
 end
 
 -- 模块被管理器释放掉时的处理
