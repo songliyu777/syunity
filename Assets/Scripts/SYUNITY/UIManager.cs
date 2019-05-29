@@ -12,7 +12,8 @@ namespace SYUNITY
     {
         public void AddPackage(string packageName)
         {
-            UIPackage.AddPackage(packageName, LoadResource);
+            UIPackage.AddPackage(packageName);
+            //UIPackage.AddPackage(packageName, LoadResource);
         }
 
         public object LoadResource(string name, string extension, System.Type type, out DestroyMethod destroyMethod)
