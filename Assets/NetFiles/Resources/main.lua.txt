@@ -2,6 +2,7 @@
 local netmanager = require("netmanager")
 local timer = require("timer")
 local modulemanager = require("modulemanager")
+local assetmanager = require("assetmanager")
 
 main = {}
 

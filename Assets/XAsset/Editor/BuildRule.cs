@@ -147,14 +147,18 @@ namespace XAsset.Editor
 
         static List<string> GetFilesWithoutDirectories(string prefabPath, string searchPattern, SearchOption searchOption)
         {
-            var files = Directory.GetFiles(prefabPath, searchPattern, searchOption);
             List<string> items = new List<string>();
-            foreach (var item in files)
+            String[] sps = searchPattern.Split(';');
+            foreach (string sp in sps)
             {
-                var assetPath = item.Replace('\\', '/');
-                if (!Directory.Exists(assetPath))
+                var files = Directory.GetFiles(prefabPath, sp, searchOption);
+                foreach (var item in files)
                 {
-                    items.Add(assetPath);
+                    var assetPath = item.Replace('\\', '/');
+                    if (!Directory.Exists(assetPath))
+                    {
+                        items.Add(assetPath);
+                    }
                 }
             }
             return items;

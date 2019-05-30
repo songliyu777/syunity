@@ -10,13 +10,22 @@ module_login.Awake = function(self)
 end
 
 module_login.OnModuleEnable = function(self)
-    uimanager:AddPackage("UI/Common")
-    local mainView = UIPackage.CreateObject("Common", "LoadPanel").asCom
-    mainView:SetSize(GRoot.inst.width, GRoot.inst.height)
-    mainView:AddRelation(GRoot.inst, RelationType.Size)
-    GRoot.inst:AddChild(mainView)
+    uimanager:AddPackage("Common")
+    self.mainView = UIPackage.CreateObject("Common", "LoadPanel").asCom
+    self.mainView.fairyBatching = true;
+    self.mainView:SetSize(GRoot.inst.width, GRoot.inst.height)
+    self.mainView:AddRelation(GRoot.inst, RelationType.Size)
+    GRoot.inst:AddChild(self.mainView)
 end
 
 module_login.OnModuleDisable = function(self)
 
+end
+
+module_login.OnModuleRelease = function(self)
+    if self.mainView then
+        GRoot.inst:RemoveChild(self.mainView, true)
+        uimanager:RemovePackage("Common")
+        self.mainView = nil
+    end
 end

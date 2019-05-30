@@ -1,0 +1,1 @@
+Assets = CS.XAsset.Assets

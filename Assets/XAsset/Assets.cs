@@ -15,6 +15,7 @@ namespace XAsset
         public static string[] allBundleNames { get { return manifest.allBundles; } }
         public static string GetBundleName(string assetPath) { return manifest.GetBundleName(assetPath); }
         public static string GetAssetName(string assetPath) { return manifest.GetAssetName(assetPath); }
+        public static bool ContainsAsset(string assetPath) { return manifest.ContainsAsset(assetPath); }
 
         private static void CheckInstance()
         {

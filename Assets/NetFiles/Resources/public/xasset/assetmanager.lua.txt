@@ -1,0 +1,15 @@
+require("class")
+require("xasset")
+
+---@class assetmanager
+local assetmanager = class()
+assetmanager.singleton = 'assetmanager'
+
+assetmanager.init = function(self)
+    self.Assets = Assets
+    if not self.Assets.Initialize() then
+        CS.UnityEngine.Debug.LogError("Assets.Initialize() error")
+    end
+end
+
+return assetmanager()

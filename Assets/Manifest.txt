@@ -1,11 +1,12 @@
 manifest:
 	Assets/Manifest.txt
 
-shared/assets/sampleassets_1:
-	Assets/SampleAssets/UnityLogo.png
+assets/netres/resources/ui/common_atlas0:
+	Assets/NetRes/Resources/UI/Common_atlas0.png
 
-assets/sampleassets/logo:
-	Assets/SampleAssets/Logo.prefab
+assets/netres/resources/ui/common_fui:
+	Assets/NetRes/Resources/UI/Common_fui.bytes
 
-sprites:
+assets/netres/resources/ui/login_fui:
+	Assets/NetRes/Resources/UI/Login_fui.bytes
 

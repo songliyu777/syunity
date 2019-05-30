@@ -1,11 +1,5 @@
 [BuildAssetsWithFilename]
-searchPath=Assets/SampleAssets
-searchPattern=*.prefab
-searchOption=AllDirectories
+searchPath=Assets/NetRes/Resources/UI
+searchPattern=*.png;*.bytes
+searchOption=TopDirectoryOnly
 bundleName=
-
-[BuildAssetsWithAssetBundleName]
-searchPath=Assets/SampleAssets
-searchPattern=*.png
-searchOption=AllDirectories
-bundleName=sprites

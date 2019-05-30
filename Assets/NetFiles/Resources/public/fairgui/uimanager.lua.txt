@@ -1,4 +1,3 @@
-local breakSocketHandle,debugXpCall = require('LuaDebug')('localhost',7003)
 require("class")
 require("fairygui")
 
@@ -15,6 +14,10 @@ end
 
 uimanager.AddPackage = function (self, packageName)
     self.scriptObj:AddPackage(packageName)
+end
+
+uimanager.RemovePackage = function (self, packageName)
+    self.scriptObj:RemovePackage(packageName)
 end
 
 return uimanager

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1080,1920">
+  <displayList>
+    <loader id="n0_qj53" name="back" xy="0,-200" size="1092,2180" url="ui://jlje9codqj531" fill="scale"/>
+    <text id="n2_qj53" name="n2" xy="313,890" size="67,39" fontSize="30" color="#ffffff" bold="true" text="帐号"/>
+    <text id="n3_qj53" name="n3" xy="313,950" size="67,39" fontSize="30" color="#ffffff" bold="true" text="密码"/>
+    <component id="n9_qj53" name="n9" src="qj532" fileName="Button.xml" xy="355,1010">
+      <Button title="登录" titleColor="#ffffff" titleFontSize="30"/>
+    </component>
+    <component id="n12_blga" name="n12" src="qj532" fileName="Button.xml" xy="558,1010">
+      <Button title="注册" titleColor="#ffffff" titleFontSize="30"/>
+    </component>
+    <component id="n13_yqr8" name="n13" src="yqr85" fileName="InputText.xml" xy="392,890"/>
+    <component id="n17_yqr8" name="n17" src="yqr85" fileName="InputText.xml" xy="392,950"/>
+  </displayList>
+</component>
