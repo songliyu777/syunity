@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <packageDescription id="jlje9cod" jpegQuality="80" compressPNG="true">
   <resources>
-    <component id="qj530" name="Main.xml" path="/" exported="true"/>
-    <image id="qj531" name="Login_back.png" path="/" scale9grid="90,180,180,360"/>
+    <component id="qj530" name="MainPanel.xml" path="/" exported="true"/>
     <component id="qj532" name="Button.xml" path="/"/>
     <image id="qj534" name="btn_blue.png" path="/"/>
-    <component id="yqr85" name="InputText.xml" path="/"/>
+    <component id="yqr85" name="InputText_Account.xml" path="/"/>
+    <image id="qr1o6" name="Login_back.png" path="/"/>
+    <component id="qr1o7" name="InputText_Password.xml" path="/"/>
   </resources>
   <publish name="Login"/>
 </packageDescription>
