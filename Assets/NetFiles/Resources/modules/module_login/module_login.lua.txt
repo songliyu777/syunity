@@ -1,3 +1,4 @@
+local breakSocketHandle,debugXpCall = require('LuaDebug')('localhost',7003)
 require("class")
 require("modulebase")
 local uimanager = require("uimanager")
@@ -16,6 +17,31 @@ module_login.OnModuleEnable = function(self)
     self.mainView:SetSize(GRoot.inst.width, GRoot.inst.height)
     self.mainView:AddRelation(GRoot.inst, RelationType.Size)
     GRoot.inst:AddChild(self.mainView)
+    self.viewController = self.mainView:GetController("c1")
+
+    self.logingroup = self.mainView:GetChild("logingroup").asGroup
+    self.mainView:GetChildInGroup(self.logingroup, "btnregister").onClick:Add(self.OnGoRegisterClick);
+    self.mainView:GetChildInGroup(self.logingroup, "btnlogin").onClick:Add(self.OnLoginClick);
+
+    self.registergroup = self.mainView:GetChild("registergroup").asGroup
+    self.mainView:GetChildInGroup(self.registergroup, "btnreturn").onClick:Add(self.OnReturnClick);
+    self.mainView:GetChildInGroup(self.registergroup, "btnregister").onClick:Add(self.OnRegisterClick);
+end
+
+module_login.OnGoRegisterClick = function (self)
+    module_login.viewController.selectedIndex = 1
+end
+
+module_login.OnLoginClick = function (self)
+    print("登录")
+end
+
+module_login.OnRegisterClick = function (self)
+    print("注册")
+end
+
+module_login.OnReturnClick = function (self)
+    module_login.viewController.selectedIndex = 0
 end
 
 module_login.OnModuleDisable = function(self)

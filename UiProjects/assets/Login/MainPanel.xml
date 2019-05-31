@@ -1,30 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="1080,1920">
+  <controller name="c1" pages="0,,1," selected="0"/>
   <displayList>
-    <loader id="n0_qj53" name="back" xy="0,0" size="1080,1920" url="ui://jlje9codqr1o6" fill="scaleMatchWidth"/>
-    <text id="n2_qj53" name="labaccount" xy="313,890" size="67,39" group="n22_qr1o" fontSize="30" color="#ffffff" bold="true" text="帐号"/>
-    <text id="n3_qj53" name="labpassword" xy="313,950" size="67,39" group="n22_qr1o" fontSize="30" color="#ffffff" bold="true" text="密码"/>
-    <component id="n9_qj53" name="btnlogin" src="qj532" fileName="Button.xml" xy="368,1010" group="n22_qr1o">
+    <loader id="n0_qj53" name="back" xy="0,-100" size="1080,1920" url="ui://jlje9codqr1o6" fill="scaleMatchWidth"/>
+    <text id="n2_qj53" name="labaccount" xy="301,865" size="65,39" group="n22_qr1o" fontSize="30" color="#ffffff" text="帐号"/>
+    <text id="n3_qj53" name="labpassword" xy="301,925" size="65,39" group="n22_qr1o" fontSize="30" color="#ffffff" text="密码"/>
+    <component id="n9_qj53" name="btnlogin" src="qj532" fileName="Button.xml" xy="404,985" size="190,70" group="n22_qr1o">
       <Button title="登录" titleColor="#ffffff" titleFontSize="30"/>
     </component>
-    <component id="n12_blga" name="btnregister" src="qj532" fileName="Button.xml" xy="559,1010" group="n22_qr1o">
+    <component id="n12_blga" name="btnregister" src="qj532" fileName="Button.xml" xy="595,985" size="190,70" group="n22_qr1o">
       <Button title="注册" titleColor="#ffffff" titleFontSize="30"/>
     </component>
-    <component id="n13_yqr8" name="account" src="yqr85" fileName="InputText_Account.xml" xy="416,890" group="n22_qr1o"/>
-    <component id="n19_qr1o" name="password" src="qr1o7" fileName="InputText_Password.xml" xy="416,950" group="n22_qr1o"/>
-    <group id="n22_qr1o" name="logingroup" xy="313,890" size="477,190" advanced="true" collapsed="true"/>
-    <component id="n23_qr1o" name="account" src="yqr85" fileName="InputText_Account.xml" xy="397,830" group="n32_qr1o"/>
-    <text id="n24_qr1o" name="labaccount" xy="307,828" size="65,39" group="n32_qr1o" fontSize="30" color="#ffffff" align="center" vAlign="middle" text="账号"/>
-    <text id="n26_qr1o" name="labpassword_1" xy="307,894" size="65,39" group="n32_qr1o" fontSize="30" color="#ffffff" align="center" vAlign="middle" text="密码"/>
-    <component id="n27_qr1o" name="password_1" src="qr1o7" fileName="InputText_Password.xml" xy="397,892" group="n32_qr1o"/>
-    <component id="n28_qr1o" name="password_2" src="qr1o7" fileName="InputText_Password.xml" xy="397,956" group="n32_qr1o"/>
-    <text id="n29_qr1o" name="labpassowrd_2" xy="307,958" size="65,39" group="n32_qr1o" fontSize="30" color="#ffffff" align="center" vAlign="middle" text="密码"/>
-    <component id="n30_qr1o" name="btnreturn" src="qj532" fileName="Button.xml" xy="593,1021" group="n32_qr1o">
+    <component id="n13_yqr8" name="account" src="yqr85" fileName="InputText_Account.xml" xy="404,865" size="375,39" group="n22_qr1o"/>
+    <component id="n19_qr1o" name="password" src="qr1o7" fileName="InputText_Password.xml" xy="404,925" size="375,39" group="n22_qr1o"/>
+    <group id="n22_qr1o" name="logingroup" xy="301,865" size="484,190" advanced="true">
+      <gearDisplay controller="c1" pages="0"/>
+      <gearXY controller="c1" pages="0,1" values="301,865|1100,865" tween="true"/>
+    </group>
+    <component id="n23_qr1o" name="account" src="yqr85" fileName="InputText_Account.xml" xy="-410,830" group="n32_qr1o"/>
+    <text id="n24_qr1o" name="labaccount" xy="-500,828" size="65,39" group="n32_qr1o" fontSize="30" color="#ffffff" align="center" vAlign="middle" text="账号"/>
+    <text id="n26_qr1o" name="labpassword_1" xy="-500,894" size="65,39" group="n32_qr1o" fontSize="30" color="#ffffff" align="center" vAlign="middle" text="密码"/>
+    <component id="n27_qr1o" name="password_1" src="qr1o7" fileName="InputText_Password.xml" xy="-410,892" group="n32_qr1o"/>
+    <component id="n28_qr1o" name="password_2" src="qr1o7" fileName="InputText_Password.xml" xy="-410,956" group="n32_qr1o"/>
+    <text id="n29_qr1o" name="labpassowrd_2" xy="-500,958" size="65,39" group="n32_qr1o" fontSize="30" color="#ffffff" align="center" vAlign="middle" text="密码"/>
+    <component id="n30_qr1o" name="btnreturn" src="qj532" fileName="Button.xml" xy="-214,1021" group="n32_qr1o">
       <Button title="返回"/>
     </component>
-    <component id="n31_qr1o" name="btnregister" src="qj532" fileName="Button.xml" xy="389,1021" group="n32_qr1o">
+    <component id="n31_qr1o" name="btnregister" src="qj532" fileName="Button.xml" xy="-418,1021" group="n32_qr1o">
       <Button title="注册"/>
     </component>
-    <group id="n32_qr1o" name="registergroup" xy="307,828" size="475,263" advanced="true" collapsed="true"/>
+    <group id="n32_qr1o" name="registergroup" xy="-500,828" size="475,263" advanced="true" collapsed="true">
+      <gearDisplay controller="c1" pages="1"/>
+      <gearXY controller="c1" pages="0" values="-500,828" default="307,828" tween="true"/>
+    </group>
   </displayList>
 </component>

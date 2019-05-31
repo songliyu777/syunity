@@ -6,6 +6,10 @@
     <component id="fypo2" name="ProgressBar.xml" path="/LoadPanel/" exported="true"/>
     <component id="qlsc6" name="LoadPanel.xml" path="/LoadPanel/" exported="true"/>
     <image id="hpfx8" name="panelback.png" path="/LoadPanel/"/>
+    <image id="o71aa" name="window_frame.png" path="/Windows/" scale="9grid" scale9grid="32,40,548,220" gridTile="16"/>
+    <component id="o71a9" name="ModuleWindow.xml" path="/Windows/" exported="true"/>
+    <component id="o71ab" name="BtnClose.xml" path="/Windows/"/>
+    <image id="o71ac" name="close.png" path="/Windows/"/>
   </resources>
   <publish name="Common"/>
 </packageDescription>

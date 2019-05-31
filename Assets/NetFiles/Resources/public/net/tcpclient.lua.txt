@@ -47,7 +47,7 @@ tcpclient.init = function (self, host, port)
     self.session = 0
     self.rlist = new_tab(0, 10)
     self.slist = new_tab(0, 10)
-    self:register(1, connection_response)
+    self:register(pbservice.pb.enum("protocol_id", "connect_msg"), connection_response)
 end
 
 tcpclient.register = function(self, cmd, callback)
@@ -67,7 +67,7 @@ tcpclient.unregister = function(self, cmd)
 end
 
 tcpclient.receive = function(self, bytecount)
-    if(bytecount > 65535) then return nil end
+    if(bytecount > 65535) then return nil end -- 一帧最多接受64k数据，超过就下帧再接受
     if self.recvhead then
         --接收head
         self.recv, self.status = self.connection:receive(22)
@@ -208,9 +208,6 @@ tcpclient.reconnect = function(self)
     --接收初始化
     self.recvhead = true
     self.head = {}
-    for i = 1, 2 do
-        send_test(self)
-    end
     local fun = util.coroutine_call(loop)
     fun(self)
 end
