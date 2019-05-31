@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="1080,1920">
+<component size="1080,1920" adaptationTest="FitSize">
   <displayList>
-    <loader id="n3_qlsc" name="back" xy="0,-100" size="1080,1920" url="ui://jqed8mhyhpfx8" fill="scaleMatchWidth"/>
+    <loader id="n3_qlsc" name="back" xy="0,0" size="1080,1920" url="ui://jqed8mhyhpfx8" fill="scaleMatchWidth">
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
     <component id="n0_qlsc" name="n0" src="fypo2" fileName="LoadPanel/ProgressBar.xml" xy="249,933">
+      <relation target="" sidePair="center-center,middle-middle"/>
       <ProgressBar value="50" max="100"/>
     </component>
   </displayList>
