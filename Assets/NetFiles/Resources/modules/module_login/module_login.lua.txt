@@ -1,4 +1,3 @@
-local breakSocketHandle,debugXpCall = require('LuaDebug')('localhost',7003)
 require("class")
 require("modulebase")
 local uimanager = require("uimanager")

@@ -36,6 +36,9 @@ end
 
 local connection_response = function(self, head, body)
     print("connection_response")
+    local stc = pbservice.pb.decode("stc_connect", body)
+    print(string.coventable(head))
+    print(string.coventable(stc))
 end
 
 tcpclient.init = function (self, host, port)
