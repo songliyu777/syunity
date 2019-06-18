@@ -1,0 +1,309 @@
+fileFormatVersion: 2
+guid: b9170677a40a8484b8868f16d05040c9
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Bip001
+    100004: Bip001 Head_pen
+    100006: Bip001 L Clavicle
+    100008: Bip001 L Forearm
+    100010: Bip001 L Thigh
+    100012: Bip001 L UpperArm
+    100014: Bip001 Neck
+    100016: Bip001 Pelvis
+    100018: Bip001 Prop2
+    100020: Bip001 R Clavicle
+    100022: Bip001 R Forearm
+    100024: Bip001 R UpperArm
+    100026: Bip001 Spine1_pen
+    100028: Bip001 Spine2
+    100030: Bip001 Spine_pen
+    100032: Bone006_sui
+    100034: Bone007
+    100036: Bone008
+    100038: Bone009
+    100040: Bone010_sui
+    100042: Bone011
+    100044: Bone012
+    100046: Bone013
+    100048: Bone014
+    100050: Bone015_sui
+    100052: Bone016
+    100054: Bone017
+    100056: Bone018
+    100058: Bone019
+    100060: Bone020_sui
+    100062: Bone021
+    100064: Bone022
+    100066: Bone023
+    100068: Bone024
+    100070: Bone025_sui
+    100072: Bone026
+    100074: Bone027
+    100076: Bone028
+    100078: eyeL
+    100080: eyeR
+    100082: H_HS01_sui
+    100084: H_HS02
+    100086: H_HS03
+    100088: H_HS04
+    100090: H_HS05
+    100092: L_HS006
+    100094: L_HS007
+    100096: L_HS008
+    100098: L_HS009
+    100100: L_HS01_sui
+    100102: L_HS02
+    100104: L_HS03
+    100106: L_HS04
+    100108: L_HS05
+    100110: L_pao01
+    100112: L_pao02
+    100114: L_PD_01_sui
+    100116: L_PD_02
+    100118: L_PD_03
+    100120: L_PD_04
+    100122: L_xiuzi_01_sui
+    100124: L_xiuzi_02
+    100126: L_xiuzi_03
+    100128: L_xiuzi_04
+    100130: L_xiuzi_05
+    100132: MeiMao_L
+    100134: MeiMao_R
+    100136: Q_HS01_sui
+    100138: Q_HS02
+    100140: Q_HS03
+    100142: Q_HS04
+    100144: R_HS01_sui
+    100146: R_pao01
+    100148: R_pao02
+    100150: R_PD_01_sui
+    100152: R_PD_02
+    100154: R_PD_03
+    100156: R_PD_04
+    100158: R_xiuzi_01_sui
+    100160: R_xiuzi_02
+    100162: R_xiuzi_03
+    100164: R_xiuzi_04
+    100166: R_xiuzi_05
+    100168: shan
+    100170: toufa_01_tou
+    100172: toufa_02
+    100174: toufa_03
+    100176: toufa_04
+    100178: toufa_05
+    100180: toufa_06
+    100182: Weye_L_01
+    100184: Weye_L_02
+    100186: Weye_L_03
+    100188: Weye_L_04
+    100190: Weye_R_01
+    100192: Weye_R_02
+    100194: Weye_R_03
+    100196: Weye_R_04
+    100198: xiaba
+    100200: xiong_ru
+    100202: xongL
+    100204: xongR
+    100206: zhuangbei
+    100208: zuiL_d
+    100210: zuiL_u
+    100212: zuiR_d
+    100214: zuiR_u
+    400000: //RootNode
+    400002: Bip001
+    400004: Bip001 Head_pen
+    400006: Bip001 L Clavicle
+    400008: Bip001 L Forearm
+    400010: Bip001 L Thigh
+    400012: Bip001 L UpperArm
+    400014: Bip001 Neck
+    400016: Bip001 Pelvis
+    400018: Bip001 Prop2
+    400020: Bip001 R Clavicle
+    400022: Bip001 R Forearm
+    400024: Bip001 R UpperArm
+    400026: Bip001 Spine1_pen
+    400028: Bip001 Spine2
+    400030: Bip001 Spine_pen
+    400032: Bone006_sui
+    400034: Bone007
+    400036: Bone008
+    400038: Bone009
+    400040: Bone010_sui
+    400042: Bone011
+    400044: Bone012
+    400046: Bone013
+    400048: Bone014
+    400050: Bone015_sui
+    400052: Bone016
+    400054: Bone017
+    400056: Bone018
+    400058: Bone019
+    400060: Bone020_sui
+    400062: Bone021
+    400064: Bone022
+    400066: Bone023
+    400068: Bone024
+    400070: Bone025_sui
+    400072: Bone026
+    400074: Bone027
+    400076: Bone028
+    400078: eyeL
+    400080: eyeR
+    400082: H_HS01_sui
+    400084: H_HS02
+    400086: H_HS03
+    400088: H_HS04
+    400090: H_HS05
+    400092: L_HS006
+    400094: L_HS007
+    400096: L_HS008
+    400098: L_HS009
+    400100: L_HS01_sui
+    400102: L_HS02
+    400104: L_HS03
+    400106: L_HS04
+    400108: L_HS05
+    400110: L_pao01
+    400112: L_pao02
+    400114: L_PD_01_sui
+    400116: L_PD_02
+    400118: L_PD_03
+    400120: L_PD_04
+    400122: L_xiuzi_01_sui
+    400124: L_xiuzi_02
+    400126: L_xiuzi_03
+    400128: L_xiuzi_04
+    400130: L_xiuzi_05
+    400132: MeiMao_L
+    400134: MeiMao_R
+    400136: Q_HS01_sui
+    400138: Q_HS02
+    400140: Q_HS03
+    400142: Q_HS04
+    400144: R_HS01_sui
+    400146: R_pao01
+    400148: R_pao02
+    400150: R_PD_01_sui
+    400152: R_PD_02
+    400154: R_PD_03
+    400156: R_PD_04
+    400158: R_xiuzi_01_sui
+    400160: R_xiuzi_02
+    400162: R_xiuzi_03
+    400164: R_xiuzi_04
+    400166: R_xiuzi_05
+    400168: shan
+    400170: toufa_01_tou
+    400172: toufa_02
+    400174: toufa_03
+    400176: toufa_04
+    400178: toufa_05
+    400180: toufa_06
+    400182: Weye_L_01
+    400184: Weye_L_02
+    400186: Weye_L_03
+    400188: Weye_L_04
+    400190: Weye_R_01
+    400192: Weye_R_02
+    400194: Weye_R_03
+    400196: Weye_R_04
+    400198: xiaba
+    400200: xiong_ru
+    400202: xongL
+    400204: xongR
+    400206: zhuangbei
+    400208: zuiL_d
+    400210: zuiL_u
+    400212: zuiR_d
+    400214: zuiR_u
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
